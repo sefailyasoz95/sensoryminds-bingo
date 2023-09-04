@@ -1,4 +1,4 @@
-import { useRecoilState, useRecoilValue } from "recoil";
+import { useRecoilValue } from "recoil";
 import BingoContainer from "./Components/Bingo/BingoContainer";
 import Header from "./Components/Header/Header";
 import { celebrationState } from "./Recoil/celebrationState";
