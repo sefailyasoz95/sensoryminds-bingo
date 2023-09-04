@@ -1,6 +1,6 @@
-# Getting Started with Create React App
+# To Get Started Please first run yarn install or npm install in the terminal
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Then yarn start or npm start
 
 ## Available Scripts
 
