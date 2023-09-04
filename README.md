@@ -8,7 +8,7 @@ Then you can run
 
 ### `npm start` or `yarn start`
 
-## Techs Used In This Project
+## Libraries and Techs Used In This Project
 
 1. TypeScript
 2. React
