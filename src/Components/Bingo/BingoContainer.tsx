@@ -24,7 +24,7 @@ const BingoContainer: React.FC<Props> = (props) => {
 	useEffect(() => {
 		setWinners([]);
 		setBingoCells(initialBingoCells);
-	}, [refresh, initialBingoCells, setWinners, setBingoCells]);
+	}, [refresh]);
 
 	const checkBingo = useCallback(() => {
 		let filteredBingos = BingoLines.filter((line) => line.every((index) => bingoCells[index] || index === 12));
@@ -35,7 +35,7 @@ const BingoContainer: React.FC<Props> = (props) => {
 		if (winners.length) {
 			setCelebrationMode(true);
 		}
-	}, [winners.length, setCelebrationMode]);
+	}, [winners.length]);
 
 	useEffect(() => {
 		const timeoutDuration = 4000;
@@ -47,7 +47,7 @@ const BingoContainer: React.FC<Props> = (props) => {
 		} else {
 			clearTimeout(timeout);
 		}
-	}, [celebrationMode, setCelebrationMode]);
+	}, [celebrationMode]);
 
 	useEffect(() => {
 		checkBingo();
