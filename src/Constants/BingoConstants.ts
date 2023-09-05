@@ -25,7 +25,6 @@ export const BingoCardTexts = [
 	"I'm down for anything",
 	"Let's go outside and we'll figure it out on the road",
 	"We just ate! When did you get hungry again?",
-	"FREE TEXT 🥳",
 	"You wanna try something different today?",
 	"You know I'm on a diet!",
 	"I just want some coffee ☕️",

@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { BingoCardTexts, BingoLines } from "../../Constants/BingoConstants";
 import BingoItem from "./BingoItem";
 import { useRecoilState, useRecoilValue } from "recoil";
@@ -13,6 +13,7 @@ const BingoContainer: React.FC<Props> = (props) => {
 	const refresh = useRecoilValue(refreshState);
 	const [winners, setWinners] = useState<Array<Array<number>>>([]);
 	const [celebrationMode, setCelebrationMode] = useRecoilState(celebrationState);
+	const [shuffledTexts, setShuffledTexts] = useState<Array<string>>([]);
 
 	const onItemClick = (index: number) => {
 		if (index === 12) return;
@@ -20,8 +21,15 @@ const BingoContainer: React.FC<Props> = (props) => {
 		_bingoCells[index] = !_bingoCells[index];
 		setBingoCells(_bingoCells);
 	};
+	const shuffleTexts = useMemo(() => {
+		const shuffled = BingoCardTexts.sort(() => 0.5 - Math.random());
+		const _shuffled = shuffled.slice(0, 24);
+		_shuffled.splice(12, 0, "FREE TEXT 🥳");
+		return _shuffled;
+	}, []);
 
 	useEffect(() => {
+		setShuffledTexts(shuffleTexts);
 		setWinners([]);
 		setBingoCells(initialBingoCells);
 	}, [refresh]);
@@ -55,7 +63,7 @@ const BingoContainer: React.FC<Props> = (props) => {
 
 	return (
 		<div className={`bingo-container `}>
-			{BingoCardTexts.map((item, index) => (
+			{shuffledTexts.map((item, index) => (
 				<BingoItem
 					text={item}
 					key={index}
