@@ -13,7 +13,7 @@ const BingoContainer: React.FC<Props> = (props) => {
 	const refresh = useRecoilValue(refreshState);
 	const [winners, setWinners] = useState<Array<Array<number>>>([]);
 	const [celebrationMode, setCelebrationMode] = useRecoilState(celebrationState);
-
+	const [lastWinnerLength, setLastWinnerLength] = useState(0);
 	const onItemClick = (index: number) => {
 		if (index === 12) return;
 		const _bingoCells = [...bingoCells];
@@ -34,11 +34,12 @@ const BingoContainer: React.FC<Props> = (props) => {
 
 	const checkBingo = useCallback(() => {
 		let filteredBingos = BingoLines.filter((line) => line.every((index) => bingoCells[index] || index === 12));
+		setLastWinnerLength(winners.length);
 		setWinners(filteredBingos);
 	}, [bingoCells]);
 
 	useEffect(() => {
-		if (winners.length) {
+		if (winners.length > lastWinnerLength) {
 			setCelebrationMode(true);
 		}
 	}, [winners.length]);
