@@ -36,6 +36,7 @@ function App() {
 							autoplay: true,
 							loop: true,
 						}}
+						isClickToPauseDisabled={true}
 					/>
 				</div>
 			)}

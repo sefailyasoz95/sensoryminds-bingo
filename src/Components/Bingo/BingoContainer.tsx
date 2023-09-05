@@ -13,7 +13,6 @@ const BingoContainer: React.FC<Props> = (props) => {
 	const refresh = useRecoilValue(refreshState);
 	const [winners, setWinners] = useState<Array<Array<number>>>([]);
 	const [celebrationMode, setCelebrationMode] = useRecoilState(celebrationState);
-	const [shuffledTexts, setShuffledTexts] = useState<Array<string>>([]);
 
 	const onItemClick = (index: number) => {
 		if (index === 12) return;
@@ -21,15 +20,14 @@ const BingoContainer: React.FC<Props> = (props) => {
 		_bingoCells[index] = !_bingoCells[index];
 		setBingoCells(_bingoCells);
 	};
-	const shuffleTexts = useMemo(() => {
+	const shuffledTexts = useMemo(() => {
 		const shuffled = BingoCardTexts.sort(() => 0.5 - Math.random());
 		const _shuffled = shuffled.slice(0, 24);
 		_shuffled.splice(12, 0, "FREE TEXT 🥳");
 		return _shuffled;
-	}, []);
+	}, [refresh]);
 
 	useEffect(() => {
-		setShuffledTexts(shuffleTexts);
 		setWinners([]);
 		setBingoCells(initialBingoCells);
 	}, [refresh]);
